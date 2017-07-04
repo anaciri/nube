@@ -1,0 +1,59 @@
+
+
+sds() {
+  sed -i -e s/$1/$2/g $3
+  }
+# loyyal
+# -------------------------------------------------
+# firebase read path
+#-------------------------------------------------
+fget() {
+    if [ $# -eq 0 ]
+      then
+         echo "fget <firebase-project> <path>"
+     else
+	firebase database:get -P dubaipoints-47aeb $1
+    fi
+}
+
+# -------------------------------------------------
+# firebase upd path
+#-------------------------------------------------
+fupd() {
+    if [ $# -eq 0 ]
+      then
+         echo "fup <firebase-project> <path>"
+     else
+        firebase database:update -y -P dubaipoints-47aeb $1 $2
+    fi
+}
+
+# -------------------------------------------------
+# TODO change fupd to use -d firebase upd path
+#-------------------------------------------------
+fupddd() {
+    if [ $# -eq 0 ]
+      then
+         echo "fup <firebase-project> <path>"
+     else
+        firebase database:update -y -P dubaipoints-47aeb -d $1 $2
+    fi
+}
+
+
+# append alias to bash_aliases
+function aa(){
+  echo "alias ${1}='${2}'" >> ~/.bash_aliases
+  source ~/.bash_aliases
+}
+
+# source bash_functions workaround for bad alias
+function sf {
+ source ~/.bash_aliases
+ source ~/.bash_funcitons
+}
+
+# lsext displays long list of files of the given extension
+function lsext() {
+find . -type f -iname '*.'${1}'' -exec ls -l {} \; ;
+}

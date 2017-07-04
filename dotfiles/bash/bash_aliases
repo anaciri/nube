@@ -1,0 +1,37 @@
+alias sa='source ~/.bash_aliases'
+alias sb='source ~/.bashrc'
+alias br='w3m -no-mouse'
+alias gfg='br ~/Documents/www.geeksforgeeks.org/c-plus-plus/index.html'
+alias brfaq='br -T text/html ~/Documents/isocpp.org'
+alias wgetdir='wget -r -l1 --no-parent' 
+
+
+# directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias dotfiles='cd /home/ayoub/bb/nube/dotfiles/'
+alias code='cd /home/ayoub/bb/nube/code/'
+alias projs='cd /home/ayoub/bb/nube/projs/'
+
+# alias added by als command
+
+alias cls='clear'
+
+alias sf='source ~/.bash_functions'
+alias gs='git status -s | grep -v ?'
+
+alias gm='git status -s | grep M'
+alias pet='cd ~/code/pyethereum/ethereum/tests'
+alias pytest='py.test'
+alias ida='cd ~/code/ida-pilot/blockchain/'
+alias tres='cd ~/nube/code/rtres/ethlib/tests'
+alias eq='emacs -q --load /home/ayoub/bb/nube/dotfiles/emacs/minimal_init.el'
+alias lgrep='grep -ls'
+alias kb='cd /home/ayoub/bb/nube/kb'
+
+alias mount_encfs='encfs ~/.encrypted/ ~/decrypted/'
+alias umount_encfs='umount ~/decrypted/'
+
+alias lcal='/usr/local/Cellar/bsdmainutils/9.0.6/bin/cal'

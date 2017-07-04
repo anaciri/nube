@@ -1,0 +1,31 @@
+PS1='\W\$ '
+export PATH="/Users/ayoub/code/goapps/bin:$PATH:/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/bin/"
+export GOPATH="/Users/ayoub/code/goapps"
+export NODE_PATH="/usr/local/lib/node_modules"
+export MINTX_NODE_ADDR="http://192.168.99.100:46657"
+export PYTHONPATH=/Users/ayoub/nube/code/mme/iblib
+#export TMROOT=~/.eris/blockchains/native
+
+# directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias dotfiles='cd /home/ayoub/bb/nube/dotfiles/'
+
+
+alias gitm='git status -s | grep M'
+alias dnpm='docker run -it -it imichael/npm-linux'
+alias pytest=py.test
+alias dkeys='docker run -it  eris/keys eris-keys'
+alias sp='source ~/.bash_profile'
+alias dm='docker-machine'
+alias sp='source ~/.bash_profile'
+
+# TODO: loyyal alias. move to loyyal/.loyyal_alias
+alias yy='cd /Users/ayoub/code/loyyal/scripts/'
+alias bender='cd /Users/ayoub/code/loyyal/bender/'
+alias scripts='cd /Users/ayoub/code/loyyal'
+alias api='cd /Users/ayoub/code/loyyal/api-local'
+
+alias ekw='/Users/ayoub/loyyal/Loyyal-Wallet.app/Contents/MacOS/Loyyal-Wallet . --rpc http://169.44.122.139:8545'

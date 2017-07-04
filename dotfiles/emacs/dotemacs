@@ -1,0 +1,245 @@
+;; /Users/ayoub/nube/dotfiles/emacs/dotemacs
+;;
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+
+(package-initialize)
+
+(cua-mode 1)
+(hl-line-mode 1)
+(display-time-mode 1)
+
+;;(require 'js-comint)
+
+(defalias 'oa 'org-agenda)
+(defalias 'eb 'eval-buffer)
+(defalias 'qrr 'query-replace-regexp)
+(defalias 'tt 'org-todo-list)
+(defalias 'rb 'revert-buffer)
+(defalias 'oc 'occur)
+(defalias 'tv 'org-tags-view)
+(defalias 'eb 'eval-buffer)
+(defalias 'sm 'set-mark-command)
+(defalias 'kr 'kill-rectangle)
+(defalias 'sir 'string-insert-rectangle)
+(defalias 'cmp 'compile)
+(defalias 'ogv 'org-global-cycle)
+(defalias 'tab 'indent-rigidly-right)
+
+;; keybinding
+(global-set-key (kbd "<f3>") 'org-search-view)
+
+(global-set-key (kbd "C-h C-h") 'beginning-of-buffer) 
+(global-set-key (kbd "C-c C-c") 'py-execute-buffer)
+(global-set-key (kbd "C-x C-a") 'org-agenda)
+(global-set-key (kbd "C-x C-j") 'bookmark-jump)
+(global-set-key (kbd "C-l") 'goto-line)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+(global-set-key (kbd "C-t") 'org-insert-todo-heading)
+
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+;; compiling
+(global-set-key (kbd "C-r") 'recompile)
+(global-set-key (kbd "C-n") 'next-error) 
+
+(setq org-agenda-files '("~/Google Drive/org/agenda"))
+
+;; cpp compiling
+(setq compile-command "llvm-g++ -g -std=c++11 test.cpp")
+(setq compilation-ask-about-save nil)
+(setq compilation-auto-jump-to-first-error 1)
+
+;; melpa
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+;; development
+(add-hook 'c-mode-common-hook
+  (lambda()
+    (local-set-key (kbd "C-c <right>") 'hs-show-block)
+    (local-set-key (kbd "C-c <left>")  'hs-hide-block)
+    (local-set-key (kbd "C-c <up>")    'hs-hide-all)
+    (local-set-key (kbd "C-c <down>")  'hs-show-all)
+    (hs-minor-mode t)))
+
+;;;;       My Funcs
+
+;-------------------------------------------------------------------
+;  window configuration register/load
+;-------------------------------------------------------------------
+;; save config
+(global-set-key (kbd "<f8>") '(lambda () (interactive) (window-configuration-to-register 7)                            (message "Windows disposition saved")))
+;; restore
+(global-set-key (kbd "<f7>") '(lambda () (interactive) (jump-to-register 7)                                            (message "Windows disposition loaded")))
+
+;-------------------------------------------------------------------------
+; func wrappers for agendas      
+;-------------------------------------------------------------------------
+(defun dfview (&optional arg)
+  (interactive "P")
+  (org-agenda arg "d"))
+(global-set-key [f6] 'dfview)
+
+(defun xpipe (&optional arg)
+  (interactive "P")
+  (org-agenda arg "x"))
+(global-set-key [f9] 'xpipe)
+
+(defun schedview (&optional arg)
+  (interactive "P")
+  (org-agenda arg "z"))
+(global-set-key [f10] 'schedview)
+
+;-------------------------------------------------------------------------
+; clear eshell       
+;-------------------------------------------------------------------------
+(defun eshell/cls ()
+  "Clear the eshell buffer."
+  (let ((inhibit-read-only t))
+    (erase-buffer)
+    (eshell-send-input)))
+
+;-------------------------------------------------------------------------
+;       refile target with ido
+;-------------------------------------------------------------------------
+;(setq org-refile-targets (quote ((nil :maxlevel . 2))))
+(setq org-refile-use-outline-path 'file)
+(setq org-refile-targets (quote (("projs.org" :maxlevel . 1)
+                                 ("projects.org" :level . 1))))
+
+; Use full outline paths for refile targets - we file directly with IDO
+(setq org-refile-use-outline-path t)
+
+; Targets complete directly with IDO
+(setq org-outline-path-complete-in-steps nil)
+
+; Allow refile to create parent tasks with confirmation
+(setq org-refile-allow-creating-parent-nodes (quote confirm))
+
+; Use IDO for both buffer and file completion and ido-everywhere to t
+(setq org-completion-use-ido t)
+(setq ido-everywhere t)
+(setq ido-max-directory-size 100000)
+(ido-mode (quote both))
+; Use the current window when visiting files and buffers with ido
+(setq ido-default-file-method 'selected-window)
+(setq ido-default-buffer-method 'selected-window)
+; Use the current window for indirect buffer display
+(setq org-indirect-buffer-display 'current-window)
+
+(defun bh/verify-refile-target ()
+  "Exclude todo keywords with a done state from refile targets"
+  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+
+(setq org-refile-target-verify-function 'bh/verify-refile-target)
+;-------------------------------------------------------------------------
+;       toggle window-dedicated
+;-------------------------------------------------------------------------
+(defun toggle-window-dedicated ()
+  "toggle window stickyness."
+  (interactive)
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window (not (window-dedicated-p window))))
+       "%s: Can't touch this!"
+     "%s is up for grabs.")
+   (current-buffer)))
+
+(global-set-key (kbd "C-c t") 'toggle-window-dedicated)
+;-------------------------------------------------------------------------
+;       
+;-------------------------------------------------------------------------
+(defun ayb-org-skip-subtree-if-habit ()
+  "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+    (if (string= (org-entry-get nil "STYLE") "habit")
+        subtree-end
+      nil)))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
+ '(custom-enabled-themes (quote (adwaita)))
+ '(exec-path
+   (quote
+    ("/Users/ayoub/tools/anaconda/bin/ipython" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
+ '(line-number-mode nil)
+ '(org-agenda-custom-commands
+   (quote
+    (("z" "sched n habits"
+      ((tags "TODO=\"GATE\"" nil)
+       (agenda ""
+	       ((org-agenda-overriding-header "scheduled")
+		(org-deadline-warning-days 2)
+		(org-agenda-skip-function
+		 (quote ayb-org-skip-subtree-if-habit)))))
+      nil nil)
+     ("d" "drg n fraccel"
+      ((tags "drg&ts"
+	     ((org-agenda-overriding-header "time-sensitive")))
+       (tags "drg&hc"
+	     ((org-agenda-overriding-header "hi conseq")))
+       (tags "drg&rg"
+	     ((org-agenda-overriding-header "resource gen (nrgy,time,flus)")))
+       (tags "DEADLINE<\"<today>\""
+	     ((org-agenda-overriding-header "current df projs"))))
+      nil nil)
+     ("x" "xecution view"
+      ((tags "TODO=\"NOW\""
+	     ((org-agenda-overriding-header "current frame")))
+       (tags "TODO=\"ODK\""
+	     ((org-agenda-overriding-header "next->odk ")))
+       (tags "STYLE=\"habit\"&SCHEDULED<=\"<today>\""
+	     ((org-agenda-overriding-header "habitos")))
+       (tags "TODO=\"NEXT\""
+	     ((org-agenda-overriding-header "nexts ")
+	      (org-agenda-tag-filter-preset
+	       (quote
+		("dlv")))))
+       (tags "TODO=\"DLV\""
+	     ((org-agenda-overriding-header "dlvs this week")
+	      (org-agenda-overriding-header "")))
+       (tags "TODO=\"FIN\""
+	     ((org-agenda-overriding-header "completed"))))
+      nil))))
+ '(org-agenda-files
+   (quote
+    ("/Users/ayb/Google Drive/org/agenda/datacapture.org" "/Users/ayb/Google Drive/org/agenda/df.org" "/Users/ayb/Google Drive/org/agenda/projs.org" "/Users/ayb/Google Drive/org/agenda/scheduled (1).org" "/Users/ayb/Google Drive/org/agenda/stories.org" "/Users/ayb/Google Drive/org/agenda/tasks.org" "/Users/ayb/Google Drive/org/agenda/weekly.org")))
+ '(org-capture-templates
+   (quote
+    (("n" "note" entry
+      (file "~/Google Drive/org/agenda/datacapture.org")
+      "* %^{title} %^g 
+ %^{body}")
+     ("t" "proj task" entry
+      (file "~/Google Drive/org/agenda/stories.org")
+      "")
+     ("d" "drag-fraccel" entry
+      (file "~/Google Drive/org/agenda/df.org")
+      "")
+     ("o" "weekly observations" item
+      (file+headline "~/Google Drive/org/agenda/weekly.org" "observations")
+      "" :jump-to-captured t))))
+ '(org-refile-allow-creating-parent-nodes (quote confirm))
+ '(org-refile-target-verify-function (quote bh/verify-refile-target))
+ '(org-refile-targets (quote (("stories.org" :regexp . "prj:"))))
+ '(org-refile-use-outline-path t)
+ '(org-sort-agenda-noeffort-is-high nil)
+ '(python-shell-exec-path (quote ("/Users/ayoub/tools/anaconda/bin/python")))
+ '(show-paren-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
