@@ -233,7 +233,7 @@
       "" :jump-to-captured t))))
  '(org-refile-allow-creating-parent-nodes (quote confirm))
  '(org-refile-target-verify-function (quote bh/verify-refile-target))
- '(org-refile-targets (quote (("stories.org" :regexp . "prj:"))))
+ '(org-refile-targets (quote ((org-agenda-files :regexp . "prj:"))))
  '(org-refile-use-outline-path t)
  '(org-sort-agenda-noeffort-is-high nil)
  '(python-shell-exec-path (quote ("/Users/ayoub/tools/anaconda/bin/python")))
