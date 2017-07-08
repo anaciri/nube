@@ -1,31 +1,102 @@
 PS1='\W\$ '
-export PATH="/Users/ayoub/code/goapps/bin:$PATH:/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/bin/"
+export PATH="/Users/ayoub/tools/anaconda/bin:$PATH:/Users/ayoub/code/goapps/bin:/usr/local/Cellar/python/2.7.12/Frameworks/Python.framework/Versions/2.7/bin/"
 export GOPATH="/Users/ayoub/code/goapps"
+export EDITOR="emacs -q"
 export NODE_PATH="/usr/local/lib/node_modules"
 export MINTX_NODE_ADDR="http://192.168.99.100:46657"
 export PYTHONPATH=/Users/ayoub/nube/code/mme/iblib
 #export TMROOT=~/.eris/blockchains/native
+
+#common
+alias sp='source ~/.bash_profile'
+alias sf='source ~/.functions_bash'
+
+alias ltr='ls -ltr | tail'
+alias ll='ls -la'
+alias lsd=' ls -d */'
+alias h='history'
 
 # directories
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias dotfiles='cd /home/ayoub/bb/nube/dotfiles/'
+alias kb='cd ~/Google\ Drive/KB/'
+
+alias gs='git status -s | grep -v ?'
+alias grevert='git checkout HEAD'
+alias gc='git commit -m upd'
+
+alias ga='git config --list | grep alias'
+alias pbcp='pbcopy'
+# run ipython from virtual env
+alias vipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
 
-alias gitm='git status -s | grep M'
-alias dnpm='docker run -it -it imichael/npm-linux'
-alias pytest=py.test
-alias dkeys='docker run -it  eris/keys eris-keys'
-alias sp='source ~/.bash_profile'
+#misc aliases n one-liner func
+alias node='env NODE_NO_READLINE=1 rlwrap node'
+# diskspace using ncurses
+alias ndu='ncdu'
+alias sed=gsed
+alias tarls='tar -tf'
+alias eq='emacs -q'
+
+#alias dkeys='docker run -it  eris/keys eris-keys'
+
+dexec() { docker exec -it $1 bash
+	}
+
+alias dpsf='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+
+alias dcf='docker-compose -f '
+
 alias dm='docker-machine'
-alias sp='source ~/.bash_profile'
+alias dps="docker ps | tail -n +2 | sed 's/\s\+/ /g' | cut -d' ' -f2"
+alias dkps='docker ps'
+alias dl='docker logs'
+alias di='docker images'
+alias dcup='docker-compose up'
+alias dck='docker-compose kill'
+
+alias encrypt_sim='gpg -v --cipher-algo AES256 --s2k-mode 3 --s2k-digest-algo SHA512 --s2k-count 65600000 --symmetric '
+
+alias dn='cd /Users/ayoub/Downloads'
+
+
+
+alias gorg='cd /Users/ayoub/Google\ Drive/org'
+alias cpp='cd  ~/Google\ Drive/projects/curro/cppxpert/hkrank/'
 
 # TODO: loyyal alias. move to loyyal/.loyyal_alias
-alias yy='cd /Users/ayoub/code/loyyal/scripts/'
-alias bender='cd /Users/ayoub/code/loyyal/bender/'
-alias scripts='cd /Users/ayoub/code/loyyal'
-alias api='cd /Users/ayoub/code/loyyal/api-local'
-
+alias ibscripts='cd /Users/ayoub/nube/code/ibtools/dave_marc_scripts_final/'
+#alias fbase='cd /Users/ayoub/loyyal/devtest/fbase'
+alias dotfiles='cd /Users/ayoub/nube/dotfiles'
+#alias scripts='cd /Users/ayoub/code/loyyal/scripts/'
+#alias bender='cd /Users/ayoub/code/loyyal/bender/'
+#alias scs='cd /Users/ayoub/code/loyyal/scs'
+#alias lcode='cd /Users/ayoub/code/loyyal'
+#alias capi='cd /Users/ayoub/code/loyyal/api-local'
+#alias rapi='cd /Users/ayoub/code/loyyal/dubai-points-api/'
+#alias dprapp='cd /Users/ayoub/code/loyyal/clientRApp'
+alias devtest='cd /Users/ayoub/loyyal/devtest/dptests'
+alias pm='cd /Users/ayoub/code/loyyal/dubai-points-api/test/pm-collections'
+alias sc='cd /Users/ayoub/loyyal/scenarios'
+alias wacurro='cd /Users/ayoub/nube/code/ibtools/node-ib/examples/cuadernos'
+alias yutils='cd /Users/ayoub/nube/code/yutils'
+alias an='cd /Users/ayoub/code/loyyal/analytics'
+alias testnet='cd /Users/ayoub/loyyal/scenarios/testnet/'
+alias dirs='alias | grep cd | grep -v [.]'
 alias ekw='/Users/ayoub/loyyal/Loyyal-Wallet.app/Contents/MacOS/Loyyal-Wallet . --rpc http://169.44.122.139:8545'
+alias fabric='cd /Users/ayoub/code/goapps/src/github.com/hyperledger/fabric/devenv/'
+alias code='cd /Users/ayoub/nube/code/'
+
+alias npmls='npm list -g'
+alias dnpm='docker run -it -it imichael/npm-linux'
+
+
+# TO deprecate
+#alias pytest=py.test
+# alias fu='firebase use'
+# alias fl='firebase list'
+# alias ij='ijs  --ijs-hide-undefined  --no-mathjax'
+# alias jdev='ijs --ijs-startup-script=/Users/ayoub/loyyal/scenarios/devstart.js --ijs-hide-undefined  --no-mathjax'

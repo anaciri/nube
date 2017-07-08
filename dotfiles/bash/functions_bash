@@ -1,0 +1,90 @@
+
+test() {
+       if [ $# -eq 0 ]; then
+       	  echo test
+       fi
+   }
+
+
+# -------------------------------------------------
+# git cat previous versions
+#-------------------------------------------------
+gitcat() {
+	 if [ $# -eq 0 ]; then
+   	    echo "gitcat <file> [revs back]"
+	 elif  [ $# -eq 1 ]; then
+  	        git show HEAD~1:$1
+	else
+	  git show HEAD~$2:$1
+	fi
+}
+
+# -------------------------------------------------
+# replace in place 1 for 2 in file 3
+#-------------------------------------------------
+sds() {
+    if [ $# -eq 0 ]
+      then
+         echo " sed -i -e s/A1/A2/g A3"
+     else
+  sed -i -e s/$1/$2/g $3
+  fi
+  }
+# loyyal
+# -------------------------------------------------
+# firebase read path
+#-------------------------------------------------
+fget() {
+    if [ $# -eq 0 ]
+      then
+         echo "fget <fbase instance> <db path>"
+     else
+	firebase database:get -P $1 $2
+    fi
+}
+
+# -------------------------------------------------
+# firebase upd path
+#-------------------------------------------------
+fupd() {
+    if [ $# -eq 0 ]
+      then
+         echo "fupd <fbase instance> <db path> <json file>"
+     else
+        firebase database:update -y -P $1 $2 $3
+    fi
+}
+
+# -------------------------------------------------
+# TODO change fupd to use -d firebase upd path
+#-------------------------------------------------
+fupddd() {
+    if [ $# -eq 0 ]
+      then
+         echo "fup <firebase-project> <path>"
+     else
+        firebase database:update -y -P dubaipoints-47aeb -d $1 $2
+    fi
+}
+
+
+# append alias to bash_aliases
+function aa(){
+  echo "alias ${1}='${2}'" >> ~/.bash_aliases
+  source ~/.bash_aliases
+}
+
+# source bash_functions workaround for bad alias
+function sf {
+ source ~/.bash_aliases
+ source ~/.bash_funcitons
+}
+
+# lsext displays long list of files of the given extension
+function lsext() {
+find . -type f -iname '*.'${1}'' -exec ls -l {} \; ;
+}
+
+function gls() {
+find . -type f -iname '*.'${1}'' | xargs grep -ls '${1}' ;
+}
