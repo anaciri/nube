@@ -174,6 +174,7 @@
    (quote
     ("/Users/ayoub/tools/anaconda/bin/ipython" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec-x86_64-10_9" "/Applications/Emacs.app/Contents/MacOS/libexec" "/Applications/Emacs.app/Contents/MacOS/bin")))
  '(line-number-mode nil)
+ '(msb-mode t)
  '(org-agenda-custom-commands
    (quote
     (("z" "sched n habits"
@@ -214,7 +215,7 @@
       nil))))
  '(org-agenda-files
    (quote
-    ("/Users/ayb/Google Drive/org/agenda/datacapture.org" "/Users/ayb/Google Drive/org/agenda/df.org" "/Users/ayb/Google Drive/org/agenda/projs.org" "/Users/ayb/Google Drive/org/agenda/scheduled (1).org" "/Users/ayb/Google Drive/org/agenda/stories.org" "/Users/ayb/Google Drive/org/agenda/tasks.org" "/Users/ayb/Google Drive/org/agenda/weekly.org")))
+    ("/Users/ayb/Google Drive/org/agenda/datacapture.org" "/Users/ayb/Google Drive/org/agenda/df.org" "/Users/ayb/Google Drive/org/agenda/projs.org" "/Users/ayb/Google Drive/org/agenda/stories.org" "/Users/ayb/Google Drive/org/agenda/tasks.org" "/Users/ayb/Google Drive/org/agenda/weekly.org" "/Users/ayb/Google Drive/org/agenda/bbtasks.org")))
  '(org-capture-templates
    (quote
     (("n" "note" entry
