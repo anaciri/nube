@@ -231,6 +231,7 @@
      ("o" "weekly observations" item
       (file+headline "~/Google Drive/org/agenda/weekly.org" "observations")
       "" :jump-to-captured t))))
+ '(org-log-into-drawer t)
  '(org-refile-allow-creating-parent-nodes (quote confirm))
  '(org-refile-target-verify-function (quote bh/verify-refile-target))
  '(org-refile-targets (quote ((org-agenda-files :regexp . "prj:"))))
