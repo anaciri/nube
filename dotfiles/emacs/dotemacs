@@ -94,6 +94,11 @@
   (org-agenda arg "z"))
 (global-set-key [f10] 'schedview)
 
+(defun ibm (&optional arg)
+  (interactive "P")
+  (org-agenda arg "i"))
+(global-set-key [f12] 'ibm)
+
 ;-------------------------------------------------------------------------
 ; clear eshell       
 ;-------------------------------------------------------------------------
@@ -192,6 +197,24 @@
 	     ((org-agenda-overriding-header "hi conseq")))
        (tags "drg&rg"
 	     ((org-agenda-overriding-header "resource gen (nrgy,time,flus)")))
+       (tags "DEADLINE<\"<today>\""
+	     ((org-agenda-overriding-header "current df projs"))))
+      nil nil)
+     ("i" "ibm tasks"
+      ((tags "TODO=\"NOW\""
+	     ((org-agenda-overriding-header "current frame")))
+       (tags "TODO=\"ODK\""
+	     ((org-agenda-overriding-header "next->odk ")))
+       (tags "STYLE=\"habit\"&SCHEDULED<=\"<today>\""
+	     ((org-agenda-overriding-header "habitos")))
+       (tags "TODO=\"NEXT\""
+	     ((org-agenda-overriding-header "nexts ")
+	      (org-agenda-tag-filter-preset
+	       (quote
+		("dlv")))))
+       (tags "TODO=\"DLV\""
+	     ((org-agenda-overriding-header "dlvs this week")
+	      (org-agenda-overriding-header "")))
        (tags "DEADLINE<\"<today>\""
 	     ((org-agenda-overriding-header "current df projs"))))
       nil nil)
