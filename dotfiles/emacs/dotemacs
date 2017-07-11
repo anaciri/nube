@@ -201,13 +201,13 @@
 	     ((org-agenda-overriding-header "current df projs"))))
       nil nil)
      ("i" "ibm tasks"
-      ((tags "TODO=\"NOW\""
+      ((tags "TODO=\"NOW\"&@work"
 	     ((org-agenda-overriding-header "current frame")))
        (tags "TODO=\"ODK\""
-	     ((org-agenda-overriding-header "next->odk ")))
-       (tags "STYLE=\"habit\"&SCHEDULED<=\"<today>\""
-	     ((org-agenda-overriding-header "habitos")))
-       (tags "TODO=\"NEXT\""
+	     ((org-agenda-overriding-header "odk ")))
+       (tags "TODO=\"TODAY\""
+	     ((org-agenda-overriding-header "today")))
+       (tags "TODO=\"TOW\""
 	     ((org-agenda-overriding-header "nexts ")
 	      (org-agenda-tag-filter-preset
 	       (quote
