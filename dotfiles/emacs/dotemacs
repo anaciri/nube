@@ -219,9 +219,9 @@
 	     ((org-agenda-overriding-header "current df projs"))))
       nil nil)
      ("x" "xecution view"
-      ((tags "TODO=\"NOW\""
+      ((tags "TODO=\"NOW\"&-@work"
 	     ((org-agenda-overriding-header "current frame")))
-       (tags "TODO=\"ODK\""
+       (tags "TODO=\"ODK\"&-@work"
 	     ((org-agenda-overriding-header "next->odk ")))
        (tags "STYLE=\"habit\"&SCHEDULED<=\"<today>\""
 	     ((org-agenda-overriding-header "habitos")))
@@ -245,9 +245,9 @@
       (file "~/Google Drive/org/agenda/datacapture.org")
       "* %^{title} %^g 
  %^{body}")
-     ("t" "proj task" entry
-      (file "~/Google Drive/org/agenda/stories.org")
-      "")
+     ("m" "proj task" entry
+      (file+datetree "~/Google Drive/org/agenda/bbnotes.org")
+      "" :prepend t)
      ("d" "drag-fraccel" entry
       (file "~/Google Drive/org/agenda/df.org")
       "")
