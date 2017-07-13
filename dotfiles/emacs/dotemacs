@@ -201,8 +201,11 @@
 	     ((org-agenda-overriding-header "current df projs"))))
       nil nil)
      ("i" "ibm tasks"
-      ((tags "TODO=\"NOW\"&@work"
-	     ((org-agenda-overriding-header "current frame")))
+      ((tags "TODO=\"NOW\""
+	     ((org-agenda-overriding-header "current frame")
+	      (org-agenda-files
+	       (quote
+		("~/Google Drive/org/agenda/bbtasks.org")))))
        (tags "TODO=\"ODK\""
 	     ((org-agenda-overriding-header "odk ")))
        (tags "TODO=\"TODAY\""
@@ -219,10 +222,16 @@
 	     ((org-agenda-overriding-header "current df projs"))))
       nil nil)
      ("x" "xecution view"
-      ((tags "TODO=\"NOW\"&-@work"
-	     ((org-agenda-overriding-header "current frame")))
-       (tags "TODO=\"ODK\"&-@work"
-	     ((org-agenda-overriding-header "next->odk ")))
+      ((tags "TODO=\"NOW\""
+	     ((org-agenda-overriding-header "current frame")
+	      (org-agenda-files
+	       (quote
+		("~/Google Drive/org/agenda/stories.org")))))
+       (tags "TODO=\"ODK\""
+	     ((org-agenda-overriding-header "next->odk ")
+	      (org-agenda-files
+	       (quote
+		("~/Google Drive/org/agenda/stories.org")))))
        (tags "STYLE=\"habit\"&SCHEDULED<=\"<today>\""
 	     ((org-agenda-overriding-header "habitos")))
        (tags "TODO=\"NEXT\""
