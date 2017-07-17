@@ -232,7 +232,7 @@
 	     ((org-agenda-overriding-header "current frame")
 	      (org-agenda-files
 	       (quote
-		("~/Google Drive/org/agenda/stories.forg")))))
+		("~/Google Drive/org/agenda/stories.org")))))
        (tags "TODO=\"ODK\""
 	     ((org-agenda-overriding-header "next->odk ")
 	      (org-agenda-files
