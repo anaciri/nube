@@ -202,21 +202,27 @@
       nil nil)
      ("i" "ibm tasks"
       ((tags "TODO=\"NOW\""
-	     ((org-agenda-overriding-header "current frame")
+	     ((org-agenda-overriding-header "prox dos horas")
 	      (org-agenda-files
 	       (quote
 		("~/Google Drive/org/agenda/bbtasks.org")))))
        (tags "TODO=\"ODK\""
-	     ((org-agenda-overriding-header "odk ")))
-       (tags "TODO=\"TODAY\""
-	     ((org-agenda-overriding-header "today")))
-       (tags "TODO=\"TOW\""
-	     ((org-agenda-overriding-header "nexts ")
+	     ((org-agenda-overriding-header "cuatro horas ")
+	      (org-agenda-files
+	       (quote
+		("~/Google Drive/org/agenda/bbtasks.org")))))
+       (tags "TODO=\"HOT\""
+	     ((org-agenda-overriding-header "on flight")))
+       (tags "TODO=\"NEXT\""
+	     ((org-agenda-overriding-header "today ")
+	      (org-agenda-files
+	       (quote
+		("~/Google Drive/org/agenda/bbtasks.org")))
 	      (org-agenda-tag-filter-preset
 	       (quote
 		("dlv")))))
        (tags "TODO=\"DLV\""
-	     ((org-agenda-overriding-header "dlvs this week")
+	     ((org-agenda-overriding-header "dlv this week")
 	      (org-agenda-overriding-header "")))
        (tags "DEADLINE<\"<today>\""
 	     ((org-agenda-overriding-header "current df projs"))))
@@ -226,7 +232,7 @@
 	     ((org-agenda-overriding-header "current frame")
 	      (org-agenda-files
 	       (quote
-		("~/Google Drive/org/agenda/stories.org")))))
+		("~/Google Drive/org/agenda/stories.forg")))))
        (tags "TODO=\"ODK\""
 	     ((org-agenda-overriding-header "next->odk ")
 	      (org-agenda-files
@@ -254,12 +260,15 @@
       (file "~/Google Drive/org/agenda/datacapture.org")
       "* %^{title} %^g 
  %^{body}")
-     ("m" "proj task" entry
-      (file+datetree "~/Google Drive/org/agenda/bbnotes.org")
+     ("m" "meeting" entry
+      (file+datetree+prompt "~/Google Drive/org/agenda/bbnotes.org")
       "" :prepend t)
-     ("d" "drag-fraccel" entry
-      (file "~/Google Drive/org/agenda/df.org")
+     ("i" "bbtask" entry
+      (file "~/Google Drive/org/agenda/bbtasks.org")
       "")
+     ("t" "drag-fraccel" entry
+      (file "~/Google Drive/org/agenda/stories.org")
+      "* %?")
      ("o" "weekly observations" item
       (file+headline "~/Google Drive/org/agenda/weekly.org" "observations")
       "" :jump-to-captured t))))
